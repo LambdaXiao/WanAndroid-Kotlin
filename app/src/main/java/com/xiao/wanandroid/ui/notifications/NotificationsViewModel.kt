@@ -1,4 +1,4 @@
-package com.xiao.wanandroid_kotlin.ui.notifications
+package com.xiao.wanandroid.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

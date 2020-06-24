@@ -1,4 +1,4 @@
-package com.xiao.wanandroid_kotlin
+package com.xiao.wanandroid
 
 import org.junit.Test
 

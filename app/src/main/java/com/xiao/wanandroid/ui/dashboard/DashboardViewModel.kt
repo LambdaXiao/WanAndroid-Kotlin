@@ -1,4 +1,4 @@
-package com.xiao.wanandroid_kotlin.ui.dashboard
+package com.xiao.wanandroid.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

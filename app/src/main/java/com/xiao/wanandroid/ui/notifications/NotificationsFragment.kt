@@ -1,4 +1,4 @@
-package com.xiao.wanandroid_kotlin.ui.notifications
+package com.xiao.wanandroid.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.xiao.wanandroid_kotlin.R
+import com.xiao.wanandroid.R
+import com.xiao.wanandroid.common.base.BaseFragment
 
-class NotificationsFragment : Fragment() {
+class NotificationsFragment : BaseFragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
 

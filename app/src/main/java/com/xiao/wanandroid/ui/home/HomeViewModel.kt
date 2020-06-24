@@ -1,4 +1,4 @@
-package com.xiao.wanandroid_kotlin.ui.home
+package com.xiao.wanandroid.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

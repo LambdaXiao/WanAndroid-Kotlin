@@ -1,4 +1,4 @@
-package com.xiao.wanandroid_kotlin
+package com.xiao.wanandroid
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
