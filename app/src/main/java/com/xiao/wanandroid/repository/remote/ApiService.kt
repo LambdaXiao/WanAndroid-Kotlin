@@ -3,6 +3,7 @@ package com.xiao.wanandroid.repository.remote
 import com.xiao.wanandroid.repository.remote.network.BaseResponse
 import com.xiao.wanandroid.ui.home.bean.BannerBean
 import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,8 +14,8 @@ import retrofit2.http.Path
 interface ApiService {
 
 //    @GET("article/list/{pagenum}/json")
-//    fun getHomeArticle(@Path("pagenum") pagenum: Int): Observable<BaseResponse<FeedArticleList?>?>?
+//    suspend fun getHomeArticle(@Path("pagenum") pagenum: Int): BaseResponse<FeedArticleList?>?
 
     @GET("banner/json")
-    fun getBanner(): Observable<BaseResponse<List<BannerBean?>?>?>?
+    suspend fun getBanner(): BaseResponse<List<BannerBean?>?>?
 }

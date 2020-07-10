@@ -32,31 +32,31 @@ abstract class BaseObserver<T>(val isShow: Boolean) : Observer<BaseResponse<T>> 
             if (t.errorCode == 0) {
                 onSuccess(t.data)
             } else {
-                onFailure(t.errorCode, t.errorMsg, t)
+                onFailure(t.errorCode, t.errorMsg)
             }
         } catch (e: Exception) {
             e.stackTrace
-            onFailure(Constants.ERROR_CODE, e.message, t)
+            onFailure(Constants.ERROR_CODE, e.message)
         }
     }
 
     //数据请求错误
     override fun onError(e: Throwable) {
+        // todo 隐藏加载框
         when (e) {
             //HTTP错误
-            is HttpException -> onFailure(Constants.ERROR_CODE, "网络(协议)异常！", null)
+            is HttpException -> onFailure(Constants.ERROR_CODE, "网络(协议)异常！")
             //连接错误
             is ConnectException, is UnknownHostException -> onFailure(
                 Constants.ERROR_CODE,
-                "连接失败！",
-                null
+                "连接失败！"
             )
             //连接超时
-            is InterruptedIOException -> onFailure(Constants.ERROR_CODE, "连接超时！", null)
+            is InterruptedIOException -> onFailure(Constants.ERROR_CODE, "连接超时！")
             //解析错误
             is JsonParseException, is JSONException, is ParseException ->
-                onFailure(Constants.ERROR_CODE, "数据解析异常！", null)
-            else -> onFailure(Constants.ERROR_CODE, "其他未知错误！", null)
+                onFailure(Constants.ERROR_CODE, "数据解析异常！")
+            else -> onFailure(Constants.ERROR_CODE, "其他未知错误！")
         }
 
     }
@@ -70,5 +70,5 @@ abstract class BaseObserver<T>(val isShow: Boolean) : Observer<BaseResponse<T>> 
     abstract fun onSuccess(data: T?)
 
     //请求失败回调
-    abstract fun onFailure(errorCode: Int, errorMsg: String?, response: BaseResponse<T>?)
+    abstract fun onFailure(errorCode: Int, errorMsg: String?)
 }

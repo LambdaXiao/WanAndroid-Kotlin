@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiao.wanandroid">
 
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 获得networking APIs的使用权限（使用网络功能时一般都需要打开） -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -10,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".common.base.BaseActivity"></activity>
+        <activity android:name=".ui.TestActivity"></activity>
+        <activity android:name=".common.base.BaseActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
