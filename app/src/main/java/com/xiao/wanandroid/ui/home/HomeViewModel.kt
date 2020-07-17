@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.xiao.wanandroid.common.base.BaseViewModel
 import com.xiao.wanandroid.repository.remote.network.ApiClient
+import com.xiao.wanandroid.repository.requestRepository.RequestRepository
 import com.xiao.wanandroid.ui.home.bean.FeedArticleList
 import kotlinx.coroutines.launch
 
@@ -18,11 +19,11 @@ class HomeViewModel : BaseViewModel() {
     }
 
     //请求首页列表数据
-    fun getHomeArticle() {
+    fun getHomeArticle(pagenum:Int) {
         launchUI {
             //协程请求
-            val response = ApiClient.instance.getService().getHomeArticle(1)
-            feedArticleList.value = response?.data
+            val response = RequestRepository.getHomeArticle(pagenum)
+            feedArticleList.value = response.data
         }
     }
 

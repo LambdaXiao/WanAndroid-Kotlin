@@ -45,7 +45,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
     }
 
     override fun initData() {
-        viewModel.getHomeArticle()
+        viewModel.getHomeArticle(1)
     }
 
     override fun providerVMClass(): Class<HomeViewModel>  = HomeViewModel::class.java

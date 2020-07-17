@@ -13,10 +13,10 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("banner/json")
-    suspend fun getBanner(): ResponseWrapper<List<BannerBean?>?>?
+    suspend fun getBanner(): ResponseWrapper<List<BannerBean?>?>
 
     @GET("article/list/{pagenum}/json")
-    suspend fun getHomeArticle(@Path("pagenum") pagenum: Int): ResponseWrapper<FeedArticleList?>?
+    suspend fun getHomeArticle(@Path("pagenum") pagenum: Int): ResponseWrapper<FeedArticleList?>
 
 
 }
