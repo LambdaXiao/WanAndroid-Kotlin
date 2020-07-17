@@ -8,7 +8,11 @@ import android.app.Application
  */
 class MyApplication: Application() {
 
+   companion object{
+       lateinit var appIntance:MyApplication
+   }
     override fun onCreate() {
         super.onCreate()
+        appIntance = this
     }
 }

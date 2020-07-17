@@ -11,22 +11,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.xiao.wanandroid.R
 import com.xiao.wanandroid.common.base.BaseFragment
+import com.xiao.wanandroid.common.base.BaseViewModelFragment
 
-class NotificationsFragment : BaseFragment() {
+class NotificationsFragment : BaseViewModelFragment<NotificationsViewModel>() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    override fun getLayoutId(): Int = R.layout.fragment_notifications
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        notificationsViewModel = ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+    override fun initView(view: View) {
+        val textView: TextView = view.findViewById(R.id.text_notifications)
+        viewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-        return root
     }
+
+    override fun initData() {
+
+    }
+
+    override fun providerVMClass(): Class<NotificationsViewModel> = NotificationsViewModel::class.java
 }

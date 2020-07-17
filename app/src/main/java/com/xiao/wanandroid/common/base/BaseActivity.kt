@@ -6,8 +6,21 @@ import android.os.Bundle
 /**
  * 所有Activity的父类
  */
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(getLayoutId())
+        initView()
+        initData()
     }
+
+    /**
+     * 子类必须实现的方法
+     */
+    abstract fun getLayoutId(): Int
+
+    abstract fun initView()
+
+    abstract fun initData()
 }

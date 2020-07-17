@@ -1,32 +1,53 @@
 package com.xiao.wanandroid.ui.home
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.common.base.BaseFragment
+import com.xiao.wanandroid.common.adapter.BaseRecyclerAdapter
+import com.xiao.wanandroid.common.adapter.setCustomAdapter
+import com.xiao.wanandroid.common.base.BaseViewModelFragment
+import com.xiao.wanandroid.ui.home.bean.FeedArticleBean
+import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.item_homearticle.view.*
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private var mList: MutableList<FeedArticleBean>? = null
+    private var mAdapter: BaseRecyclerAdapter<FeedArticleBean>? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+    override fun getLayoutId(): Int = R.layout.fragment_home
+
+    override fun initView(view: View) {
+        viewModel.getFeedArticleList().observe(viewLifecycleOwner, Observer {
+            mList?.clear()
+            mList?.addAll(it.datas)
+            mAdapter?.notifyDataSetChanged()
         })
 
-        return root
+        mList = mutableListOf()
+        mAdapter = view.mRecyclerView.setCustomAdapter(
+            R.layout.item_homearticle,
+            mList,
+            bindData = { view, feedArticleBean ->
+                feedArticleBean?.run {
+                    view.item_pager_title.text = title
+                    view.item_pager_author.text = author
+                    view.item_pager_chapterName.text =
+                        "${superChapterName}/${chapterName}"
+                    view.item_pager_niceDate.text = niceDate
+                }
+            },
+            itemClick = { view, i ->
+                println("点击了第$i 项列表项")
+            }
+        )
+
     }
+
+    override fun initData() {
+        viewModel.getHomeArticle()
+    }
+
+    override fun providerVMClass(): Class<HomeViewModel>  = HomeViewModel::class.java
 
 }

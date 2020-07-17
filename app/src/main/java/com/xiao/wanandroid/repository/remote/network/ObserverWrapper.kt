@@ -12,10 +12,10 @@ import java.net.ConnectException
 import java.net.UnknownHostException
 
 /**
- *描述：观察者（数据回调处理基类）
+ *描述：观察者封装类（数据回调处理）
  *
  */
-abstract class BaseObserver<T>(val isShow: Boolean) : Observer<BaseResponse<T>> {
+abstract class ObserverWrapper<T>(val isShow: Boolean) : Observer<ResponseWrapper<T>> {
 
     //开始订阅请求
     override fun onSubscribe(d: Disposable) {
@@ -26,7 +26,7 @@ abstract class BaseObserver<T>(val isShow: Boolean) : Observer<BaseResponse<T>> 
     }
 
     //数据请求返回结果
-    override fun onNext(t: BaseResponse<T>) {
+    override fun onNext(t: ResponseWrapper<T>) {
         try {
             print(t)
             if (t.errorCode == 0) {

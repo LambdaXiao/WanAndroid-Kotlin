@@ -9,17 +9,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
- *描述：Retrofit网络请求统一管理
+ *描述：网络请求管理（单例）
  *
  */
-class RetrofitManager {
+class ApiClient {
 
     private var mRetrofit: Retrofit
     private var mBuilder: Retrofit.Builder
     private lateinit var mApiService: ApiService
 
     private object Holder {
-        val INSTANCE = RetrofitManager()
+        val INSTANCE = ApiClient()
     }
 
     companion object {
@@ -35,12 +35,13 @@ class RetrofitManager {
             //Retrofit 从 2.6.0 版本开始内置了对协程的支持。添加对 Deferred 的支持
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
         mRetrofit = mBuilder.baseUrl(Constants.BASE_URL).build()
+        mApiService = mRetrofit.create(ApiService::class.java)
     }
 
     /**
      * 获取API实例
      */
-    fun getService(): ApiService = mRetrofit.create(ApiService::class.java)
+    fun getService(): ApiService = mApiService
 
     fun <T> getService(clazz: Class<T>): T = mRetrofit.create(clazz)
 }

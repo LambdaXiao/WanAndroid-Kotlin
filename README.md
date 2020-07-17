@@ -3,5 +3,5 @@
 
 #### 技术栈
 - Jetpack(ViewModel+LiveData+Lifecycle+DataBinding)+MVVM 架构模式
-- Retrofit2+RxJava2 网络框架
+- Kotlin + 协程 + Retrofit  网络框架
 - Glide 图片加载库
