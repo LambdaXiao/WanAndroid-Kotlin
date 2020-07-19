@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.repository.remote
+package com.xiao.wanandroid.repository.remote.network
 
 import com.xiao.wanandroid.repository.remote.network.ResponseWrapper
 import com.xiao.wanandroid.ui.home.bean.BannerBean

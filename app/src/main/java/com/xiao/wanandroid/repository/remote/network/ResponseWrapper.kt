@@ -9,4 +9,4 @@ package com.xiao.wanandroid.repository.remote.network
  *  "errorMsg": "账号密码不匹配！"
  * }
  */
-data class ResponseWrapper<out T>(val data: T, val errorCode: Int, val errorMsg: String)
+data class ResponseWrapper<out T>(val errorCode: Int, val errorMsg: String?, val data: T?)

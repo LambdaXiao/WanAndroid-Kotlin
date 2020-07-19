@@ -10,7 +10,7 @@ import com.xiao.wanandroid.ui.home.bean.FeedArticleList
  */
 object RequestRepository:BaseRepository() {
 
-    suspend fun getHomeArticle(pagenum:Int): ResponseWrapper<FeedArticleList?> = request {
-        ApiClient.instance.getService().getHomeArticle(pagenum)
+    suspend fun getHomeArticle(pagenum:Int): FeedArticleList? = request {
+        ApiClient.getService().getHomeArticle(pagenum)
     }
 }

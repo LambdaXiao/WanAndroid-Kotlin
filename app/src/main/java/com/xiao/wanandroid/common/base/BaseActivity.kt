@@ -8,9 +8,14 @@ import android.os.Bundle
  */
 abstract class BaseActivity : AppCompatActivity() {
 
+    lateinit var mActivity:AppCompatActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+
+        mActivity = this
+
         initView()
         initData()
     }

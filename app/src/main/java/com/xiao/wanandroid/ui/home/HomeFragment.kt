@@ -37,7 +37,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
                     view.item_pager_niceDate.text = niceDate
                 }
             },
-            itemClick = { view, i ->
+            itemClick = {view, i ->
                 println("点击了第$i 项列表项")
             }
         )
@@ -45,7 +45,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
     }
 
     override fun initData() {
-        viewModel.getHomeArticle(1)
+        viewModel.getHomeArticle(mActivity,1)
     }
 
     override fun providerVMClass(): Class<HomeViewModel>  = HomeViewModel::class.java

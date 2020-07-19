@@ -73,8 +73,8 @@ fun <T> RecyclerView.setCustomAdapter(
     itemList: MutableList<T>?,
     bindData: (View, T) -> Unit,
     //以下三项都有默认实现体，需要自己处理时可以重写，不需要即可省略
-    itemClick: (View, Int) -> Unit = { view, i -> println("点击了第$i 项列表项--默认实现") },
-    longClick: (View, Int) -> Unit = { view, i -> println("长按了第$i 项列表项--默认实现") },
+    itemClick: (View, Int) -> Unit = { view, pos ->  },
+    longClick: (View, Int) -> Unit = { view, pos ->  },
     layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
 ): BaseRecyclerAdapter<T> {
     this.layoutManager = layoutManager

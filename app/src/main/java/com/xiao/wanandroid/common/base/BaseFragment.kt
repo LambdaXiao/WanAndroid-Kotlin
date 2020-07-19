@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 /**
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment
  *
  */
 abstract class BaseFragment : Fragment() {
+
+    lateinit var mActivity: AppCompatActivity
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +26,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mActivity = activity as AppCompatActivity
         initView(view)
         initData()
     }
