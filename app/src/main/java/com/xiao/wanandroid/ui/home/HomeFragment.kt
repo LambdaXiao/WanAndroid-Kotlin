@@ -6,6 +6,7 @@ import com.xiao.wanandroid.R
 import com.xiao.wanandroid.common.adapter.BaseRecyclerAdapter
 import com.xiao.wanandroid.common.adapter.setCustomAdapter
 import com.xiao.wanandroid.common.base.BaseViewModelFragment
+import com.xiao.wanandroid.ui.gzh.GzhFragment
 import com.xiao.wanandroid.ui.home.bean.FeedArticleBean
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.item_homearticle.view.*
@@ -14,6 +15,11 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
 
     private var mList: MutableList<FeedArticleBean>? = null
     private var mAdapter: BaseRecyclerAdapter<FeedArticleBean>? = null
+
+
+    companion object {
+        fun newInstance() = HomeFragment()
+    }
 
     override fun getLayoutId(): Int = R.layout.fragment_home
 

@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.common
+package com.xiao.wanandroid.utils
 
 import android.annotation.SuppressLint
 import android.content.Context

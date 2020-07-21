@@ -13,5 +13,5 @@ object Constants {
     val ERROR_CODE: Int = -1
 
     //请求的API域名
-    val BASE_URL : String = "https://www.wanandroid.com"
+    val BASE_URL : String = "https://www.wanandroid.com/"
 }
