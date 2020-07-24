@@ -22,8 +22,7 @@ class HomeViewModel : BaseViewModel() {
 
     //请求首页列表数据
     fun getHomeArticle(context:Context,pagenum: Int) {
-        launchUI(context,
-            successBlock = {
+        launchUI(successBlock = {
             //协程请求
             val data = RequestRepository.getHomeArticle(pagenum)
             feedArticleList.value = data

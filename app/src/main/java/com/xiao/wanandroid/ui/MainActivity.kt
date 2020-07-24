@@ -1,5 +1,6 @@
 package com.xiao.wanandroid.ui
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.xiao.wanandroid.R
@@ -61,7 +62,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-
+            startActivity(Intent(this,TestActivity::class.java))
     }
 
     /**

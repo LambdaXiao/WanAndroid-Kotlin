@@ -24,11 +24,20 @@ import kotlin.reflect.KProperty
  * value = 2
  */
 class SharedPreferencesUtil<T>(val key: String, val default: T) {
-    val prefs: SharedPreferences by lazy {
-        MyApplication.appIntance.applicationContext.getSharedPreferences(
-            key,
-            Context.MODE_PRIVATE
-        )
+
+    companion object {
+        private const val SHARE_PRE_NAME = "open_wanandroid"
+
+        private val prefs: SharedPreferences by lazy {
+            MyApplication.appIntance.applicationContext.getSharedPreferences(
+                SHARE_PRE_NAME,
+                Context.MODE_PRIVATE
+            )
+        }
+
+        fun clear() {
+            prefs.edit().clear()
+        }
     }
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {

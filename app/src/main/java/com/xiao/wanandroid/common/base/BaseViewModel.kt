@@ -10,6 +10,7 @@ import com.xiao.wanandroid.common.Constants
 import com.xiao.wanandroid.repository.remote.LoadingDialog
 import com.xiao.wanandroid.repository.remote.network.ResponseWrapper
 import com.xiao.wanandroid.repository.requestRepository.BaseRepository
+import com.xiao.wanandroid.utils.ActivityStackUtil
 import kotlinx.coroutines.*
 import org.json.JSONException
 import retrofit2.HttpException
@@ -32,7 +33,6 @@ open class BaseViewModel : ViewModel() {
 
     //运行在UI线程的协程
     fun launchUI(
-        context: Context,
         successBlock: suspend CoroutineScope.() -> Unit,
         //可选项，默认有实现体，实现通用错误提示
         failureBlock: (errorCode: Int, errorMsg: String?) -> Unit = { errorCode, errorMsg ->
@@ -45,7 +45,7 @@ open class BaseViewModel : ViewModel() {
         handleException(throwable, failureBlock)
     }) {
 
-        LoadingDialog.show(context)
+        ActivityStackUtil.currentActivity()?.let { LoadingDialog.show(it) }
         successBlock()
         LoadingDialog.cancel()
 

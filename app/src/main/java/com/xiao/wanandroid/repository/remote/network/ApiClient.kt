@@ -14,41 +14,38 @@ import java.util.concurrent.TimeUnit
  */
 object ApiClient {
 
+    const val TIME_OUT_SECONDS:Long = 30
     private var mRetrofit: Retrofit
-    private var mBuilder: Retrofit.Builder
-    private lateinit var mApiService: ApiService
-
-//    private object Holder {
-//        val INSTANCE = ApiClient()
-//    }
-//
-//    companion object {
-//        val instance by lazy { Holder.INSTANCE }
-//    }
 
     init {
         val okHttpClient = OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
+            .writeTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
             .addInterceptor(HttpLoggingInterceptor().apply {
-                if (BuildConfig.DEBUG) {
-                    level = HttpLoggingInterceptor.Level.BODY
-                } else {
-                    level = HttpLoggingInterceptor.Level.BASIC
+                level = when (BuildConfig.DEBUG) {
+                    true -> HttpLoggingInterceptor.Level.BODY
+                    false -> HttpLoggingInterceptor.Level.NONE
                 }
             }).build()
-        mBuilder = Retrofit.Builder()
+        mRetrofit = Retrofit.Builder()
             .client(okHttpClient) //Gson数据解析器
             .addConverterFactory(GsonConverterFactory.create())
             //Retrofit 从 2.6.0 版本开始内置了对协程的支持。添加对 Deferred 的支持
 //            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        mRetrofit = mBuilder.baseUrl(Constants.BASE_URL).build()
-        mApiService = mRetrofit.create(ApiService::class.java)
+            .baseUrl(Constants.BASE_URL).build()
     }
 
     /**
      * 获取API实例
      */
-    fun getService(): ApiService = mApiService
+    fun getService(): ApiService {
+        val service by lazy { mRetrofit.create(ApiService::class.java) }
+        return service
+    }
 
-    fun <T> getService(clazz: Class<T>): T = mRetrofit.create(clazz)
+    fun <T> getService(clazz: Class<T>): T {
+        val service by lazy { mRetrofit.create(clazz) }
+        return service
+    }
 }

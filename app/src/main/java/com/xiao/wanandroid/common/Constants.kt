@@ -7,11 +7,14 @@ package com.xiao.wanandroid.common
 object Constants {
 
     //数据请求成功的code
-    val SUCCESS_CODE: Int = 0
+    const val SUCCESS_CODE: Int = 0
 
     //数据请求失败的通用code
-    val ERROR_CODE: Int = -1
+    const val ERROR_CODE: Int = -1
 
     //请求的API域名
-    val BASE_URL : String = "https://www.wanandroid.com/"
+    const val BASE_URL : String = "https://www.wanandroid.com/"
+
+    const val DATABASE_NAME = "wanandroid_db"
+
 }

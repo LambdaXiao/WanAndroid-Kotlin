@@ -23,7 +23,7 @@ abstract class BaseFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         // 缓存当前依附的activity
-        mActivity = activity as AppCompatActivity
+        mActivity = context as AppCompatActivity
     }
 
     override fun onCreateView(
