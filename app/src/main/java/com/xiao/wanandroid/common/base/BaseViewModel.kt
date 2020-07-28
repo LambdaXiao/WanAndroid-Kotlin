@@ -1,24 +1,24 @@
 package com.xiao.wanandroid.common.base
 
-import android.content.Context
 import android.net.ParseException
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
-import com.xiao.wanandroid.application.MyApplication
 import com.xiao.wanandroid.common.Constants
 import com.xiao.wanandroid.repository.remote.LoadingDialog
-import com.xiao.wanandroid.repository.remote.network.ResponseWrapper
-import com.xiao.wanandroid.repository.requestRepository.BaseRepository
-import com.xiao.wanandroid.utils.ActivityStackUtil
+import com.xiao.wanandroid.repository.remote.network.ApiException
+import com.xiao.wanandroid.repository.remote.network.State
+import com.xiao.wanandroid.utils.ActivityManager
+import com.xiao.wanandroid.utils.extension.logE
+import com.xiao.wanandroid.utils.extension.showToast
 import kotlinx.coroutines.*
 import org.json.JSONException
 import retrofit2.HttpException
 import java.io.InterruptedIOException
-import java.lang.Exception
 import java.net.ConnectException
 import java.net.UnknownHostException
-import kotlin.Result.Companion.failure
 
 
 /**
@@ -27,39 +27,62 @@ import kotlin.Result.Companion.failure
  * 注意：这里用的协程作用域 viewModelScope 是 ViewModel专有的，
  * 当ViewModel销毁时协程作用域viewModelScope会自动取消
  */
+
+typealias Block = suspend CoroutineScope.() -> Unit
+typealias ErrorBlock = (errorCode: Int, errorMsg: String?) -> Unit
+
 open class BaseViewModel : ViewModel() {
 
-    private val failureData by lazy { MutableLiveData<Map<Int, String>>() }
+    private val ErrorState by lazy { MutableLiveData<State>() }
+
+    fun getResultState(): LiveData<State> {
+        return ErrorState
+    }
 
     //运行在UI线程的协程
     fun launchUI(
-        successBlock: suspend CoroutineScope.() -> Unit,
+        block: Block,
         //可选项，默认有实现体，实现通用错误提示
-        failureBlock: (errorCode: Int, errorMsg: String?) -> Unit = { errorCode, errorMsg ->
-            failureData.value = mapOf(errorCode to (errorMsg ?: ""))
+        errorBlock: ErrorBlock = { errorCode, errorMsg ->
+            errorMsg?.showToast()
+            ErrorState.postValue(State(errorCode, errorMsg))
         }
     ) = viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable ->
-        // TODO 所有协程作用域的异常都统一在这里捕获
-        Log.e("协程异常", throwable.toString())
+        // TODO 全局捕获异常，所有协程作用域的异常都统一在这里捕获
+        logE("协程异常", throwable.toString(), throwable)
         LoadingDialog.cancel()
-        handleException(throwable, failureBlock)
+        handleException(throwable, errorBlock)
     }) {
 
-        ActivityStackUtil.currentActivity()?.let { LoadingDialog.show(it) }
-        successBlock()
+        ActivityManager.currentActivity()?.let { LoadingDialog.show(it) }
+        block()
         LoadingDialog.cancel()
 
     }
 
+
+
     /**
-     * 请求失败，出现异常
+     * 创建并执行协程
+     * @param block 协程中执行
+     * @return Deferred<T>
      */
-    fun getFailureData(): LiveData<Map<Int, String>> {
-        return failureData
+    protected fun <T> async(block: suspend () -> T): Deferred<T> {
+        return viewModelScope.async { block.invoke() }
     }
 
     /**
-     * 协程异常处理
+     * 取消协程
+     * @param job 协程job
+     */
+    protected fun cancelJob(job: Job?) {
+        if (job != null && job.isActive && !job.isCompleted && !job.isCancelled) {
+            job.cancel()
+        }
+    }
+
+    /**
+     * 通用错误处理
      */
     fun handleException(
         throwable: Throwable,
@@ -67,10 +90,10 @@ open class BaseViewModel : ViewModel() {
     ) {
         when (throwable) {
             //网络请求成功了，但是后台响应码错误
-            is BaseRepository.ResponseThrowable -> failureBlock(
-                throwable.errorCode,
-                throwable.errorMsg
-            )
+            is ApiException -> when(throwable.code){
+                -1001 -> ""
+                else -> failureBlock(throwable.code, throwable.message)
+            }
             //HTTP错误
             is HttpException ->
                 failureBlock(Constants.ERROR_CODE, "网络(协议)异常！")

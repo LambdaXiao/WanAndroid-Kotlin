@@ -1,8 +1,9 @@
-package com.xiao.wanandroid.utils.extension
+package com.xiao.wanandroid.utils
 
 import android.app.Activity
+import android.content.Context
 import android.view.View
-import com.xiao.wanandroid.utils.ShareUtil
+import android.view.inputmethod.InputMethodManager
 
 
 /**
@@ -48,5 +49,6 @@ fun share(activity: Activity, shareContent: String, shareType: Int) {
 //        ShareDialogFragment().showDialog(activity, shareContent)
 //    }
 //}
+
 
 

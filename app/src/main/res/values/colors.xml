@@ -21,4 +21,6 @@
     <color name="light_green">#3fc75f</color>
     <color name="signup_bg">#C378C8BE</color>
     <color name="login_bg">#C37A80C1</color>
+
+    <color name="bgColorPrimary">#FFFFFF</color>
 </resources>

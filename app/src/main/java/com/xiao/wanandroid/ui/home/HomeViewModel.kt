@@ -1,16 +1,12 @@
 package com.xiao.wanandroid.ui.home
 
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.xiao.wanandroid.application.MyApplication
 import com.xiao.wanandroid.common.base.BaseViewModel
 import com.xiao.wanandroid.repository.requestRepository.RequestRepository
 import com.xiao.wanandroid.ui.home.bean.FeedArticleList
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.net.UnknownHostException
+import com.xiao.wanandroid.utils.extension.showToast
 
 class HomeViewModel : BaseViewModel() {
 
@@ -22,13 +18,13 @@ class HomeViewModel : BaseViewModel() {
 
     //请求首页列表数据
     fun getHomeArticle(context:Context,pagenum: Int) {
-        launchUI(successBlock = {
+        launchUI(block = {
             //协程请求
-            val data = RequestRepository.getHomeArticle(pagenum)
+            val data = RequestRepository.requestHomeArticle(pagenum)
             feedArticleList.value = data
         },
-            failureBlock = { errorCode, errorMsg ->
-                Toast.makeText(MyApplication.appIntance, errorMsg, Toast.LENGTH_SHORT).show()
+            errorBlock = { errorCode, errorMsg ->
+                errorMsg?.showToast()
             }
         )
     }

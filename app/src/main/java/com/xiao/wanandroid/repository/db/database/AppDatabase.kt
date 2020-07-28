@@ -12,7 +12,7 @@ import com.xiao.wanandroid.repository.db.entity.User
  *描述：数据库实例(单例模式)
  *
  */
-@Database(entities = arrayOf(User::class), version = 1)
+@Database(entities = arrayOf(User::class), version = 1,exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
@@ -23,7 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     private object Holder {
         val db = Room.databaseBuilder(
-            MyApplication.appIntance,
+            MyApplication.intance,
             AppDatabase::class.java, DATABASE_NAME
         ).build()
     }

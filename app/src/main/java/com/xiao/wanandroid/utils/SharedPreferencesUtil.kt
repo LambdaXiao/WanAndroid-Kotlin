@@ -7,7 +7,7 @@ import com.xiao.wanandroid.application.MyApplication
 import kotlin.reflect.KProperty
 
 /**
- *描述：SharedPreferences委托封装
+ *描述：SharedPreferences委托模式封装
  *
  * 这个类的实现思路
  * 1. 首先定义一个带泛型T的类
@@ -29,15 +29,14 @@ class SharedPreferencesUtil<T>(val key: String, val default: T) {
         private const val SHARE_PRE_NAME = "open_wanandroid"
 
         private val prefs: SharedPreferences by lazy {
-            MyApplication.appIntance.applicationContext.getSharedPreferences(
+            MyApplication.intance.applicationContext.getSharedPreferences(
                 SHARE_PRE_NAME,
                 Context.MODE_PRIVATE
             )
         }
 
-        fun clear() {
-            prefs.edit().clear()
-        }
+        fun clear() = prefs.edit().clear().apply()
+
     }
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {

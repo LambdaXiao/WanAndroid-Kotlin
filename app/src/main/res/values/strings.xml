@@ -14,6 +14,8 @@
     <string name="action_setting">设置</string>
     <string name="about_us">关于我们</string>
     <string name="press_again_to_exit">再按一次退出%1$s</string>
+    <string name="loading">正在加载中&#8230;</string>
+
     <string name="about_content"><![CDATA[
         <h2>网站内容</h2>
         <p>\t\t本网站每天新增20~30篇优质文章，并加入到现有分类中，力求整理出一份优质而又详尽的知识体系，闲暇时间不妨上来学习下知识；除此以外，并为大家提供平时开发过程中常用的工具以及常用的网址导航。</p>
@@ -65,5 +67,21 @@
     <string name="your_phone_does_not_install_wechat">您的手机还没有安装微信</string>
     <string name="your_phone_does_not_install_weibo">您的手机还没有安装微博</string>
     <string name="your_phone_does_not_install_qq_zone">您的手机还没有安装QQ空间</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 </resources>

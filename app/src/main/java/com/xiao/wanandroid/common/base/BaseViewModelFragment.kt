@@ -3,10 +3,9 @@ package com.xiao.wanandroid.common.base
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.TimeoutCancellationException
+import com.xiao.wanandroid.utils.extension.showToast
 
 /**
  * 需要用到viewModel才才继承这个BaseViewModelFragment
@@ -14,7 +13,7 @@ import kotlinx.coroutines.TimeoutCancellationException
 abstract class BaseViewModelFragment<VM : BaseViewModel> : BaseFragment() {
 
     private val fragmentName = javaClass.simpleName
-    protected lateinit var viewModel: VM
+    protected lateinit var mViewModel: VM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initVM()
@@ -29,7 +28,7 @@ abstract class BaseViewModelFragment<VM : BaseViewModel> : BaseFragment() {
      */
     private fun initVM() {
         providerVMClass()?.let {
-            viewModel = ViewModelProvider(this).get(it)
+            mViewModel = ViewModelProvider(this).get(it)
         }
     }
 
@@ -38,18 +37,14 @@ abstract class BaseViewModelFragment<VM : BaseViewModel> : BaseFragment() {
      */
     open fun startObserve() {
         //处理一些通用异常，比如网络超时等
-        viewModel?.run {
-            getFailureData().observe(viewLifecycleOwner, Observer {
-                it.forEach{entry ->
-                    requestError(entry.key,entry.value)  }
+        mViewModel?.run {
+            getResultState().observe(viewLifecycleOwner, Observer {
+
             })
         }
     }
 
-    open fun requestError(errorCode: Int, errorMsg: String?) {
-        // TODO 处理一些已知异常
-        Toast.makeText(activity,"$errorMsg[$errorCode]", Toast.LENGTH_SHORT).show()
-    }
+
 
 
 }

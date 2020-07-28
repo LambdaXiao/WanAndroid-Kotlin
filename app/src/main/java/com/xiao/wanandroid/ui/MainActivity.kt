@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.xiao.wanandroid.R
+import com.xiao.wanandroid.common.ProgressDialogFragment
 import com.xiao.wanandroid.common.base.BaseActivity
 import com.xiao.wanandroid.common.base.BaseFragment
 import com.xiao.wanandroid.ui.gzh.GzhFragment
@@ -22,6 +23,7 @@ class MainActivity : BaseActivity() {
     private lateinit var mFragments: List<BaseFragment>
     private var mLastFgIndex = 0 //上一次显示的fragment下标
     private val fragmentManager by lazy { supportFragmentManager}
+    private lateinit var progressDialogFragment: ProgressDialogFragment
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
@@ -62,7 +64,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-            startActivity(Intent(this,TestActivity::class.java))
+//            startActivity(Intent(this,Test2Activity::class.java))
+
+//        if (!this::progressDialogFragment.isInitialized) {
+//            progressDialogFragment = ProgressDialogFragment.newInstance()
+//        }
+//        progressDialogFragment.show(supportFragmentManager, R.string.loading, false)
     }
 
     /**

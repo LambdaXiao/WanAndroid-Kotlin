@@ -9,4 +9,16 @@ package com.xiao.wanandroid.repository.remote.network
  *  "errorMsg": "账号密码不匹配！"
  * }
  */
-data class ResponseWrapper<out T>(val errorCode: Int, val errorMsg: String?, val data: T?)
+data class ResponseWrapper<out T>(val errorCode: Int, val errorMsg: String?, val data: T?){
+    fun dataConvert(): T? {
+        when (errorCode) {
+            0 -> {
+                return data
+            }
+            else -> {
+                throw ApiException(errorCode, errorMsg)
+                return data
+            }
+        }
+    }
+}

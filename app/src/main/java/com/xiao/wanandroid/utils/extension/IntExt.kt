@@ -12,7 +12,7 @@ import com.xiao.wanandroid.application.MyApplication
  * @param duration 显示消息的时间  Either {@link #LENGTH_SHORT} or {@link #LENGTH_LONG}
  */
 fun Int.showToast(duration: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(MyApplication.appIntance, this, duration).show()
+    Toast.makeText(MyApplication.intance, this, duration).show()
 }
 
 /**

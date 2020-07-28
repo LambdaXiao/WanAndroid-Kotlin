@@ -1,9 +1,9 @@
 package com.xiao.wanandroid.common.base
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.xiao.wanandroid.utils.ActivityStackUtil
+import com.xiao.wanandroid.utils.ActivityManager
+import com.xiao.wanandroid.utils.extension.logD
 import java.lang.ref.WeakReference
 
 /**
@@ -16,20 +16,18 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected lateinit var mActivity:AppCompatActivity
 
-    /** 当前Activity的弱引用，防止内存泄露  */
-    protected var activityWR: WeakReference<AppCompatActivity>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
-
         mActivity = this
-        activityWR = WeakReference(this)
-        ActivityStackUtil.pushActivity(activityWR)
+        ActivityManager.addActivity(mActivity)
+        setContentLayout()
+    }
+
+    open fun setContentLayout(){
+        setContentView(getLayoutId())
         initView()
         initData()
     }
-
     /**
      * 子类必须实现的方法
      */
@@ -41,6 +39,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        ActivityStackUtil.removeActivity(activityWR)
+        ActivityManager.removeActivity(mActivity)
     }
 }

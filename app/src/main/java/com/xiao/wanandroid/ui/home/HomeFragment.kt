@@ -6,7 +6,6 @@ import com.xiao.wanandroid.R
 import com.xiao.wanandroid.common.adapter.BaseRecyclerAdapter
 import com.xiao.wanandroid.common.adapter.setCustomAdapter
 import com.xiao.wanandroid.common.base.BaseViewModelFragment
-import com.xiao.wanandroid.ui.gzh.GzhFragment
 import com.xiao.wanandroid.ui.home.bean.FeedArticleBean
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.item_homearticle.view.*
@@ -24,7 +23,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
     override fun getLayoutId(): Int = R.layout.fragment_home
 
     override fun initView(view: View) {
-        viewModel.getFeedArticleList().observe(viewLifecycleOwner, Observer {
+        mViewModel.getFeedArticleList().observe(viewLifecycleOwner, Observer {
             mList?.clear()
             mList?.addAll(it.datas)
             mAdapter?.notifyDataSetChanged()
@@ -51,7 +50,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
     }
 
     override fun initData() {
-        viewModel.getHomeArticle(mActivity,1)
+        mViewModel.getHomeArticle(mActivity,1)
     }
 
     override fun providerVMClass(): Class<HomeViewModel>  = HomeViewModel::class.java

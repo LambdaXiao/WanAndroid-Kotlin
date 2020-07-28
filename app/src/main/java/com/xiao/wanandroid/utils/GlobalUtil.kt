@@ -30,21 +30,21 @@ object GlobalUtil {
      * @return 当前应用程序的包名。
      */
     val appPackage: String
-        get() = MyApplication.appIntance.packageName
+        get() = MyApplication.intance.packageName
 
     /**
      * 获取当前应用程序的名称。
      * @return 当前应用程序的名称。
      */
     val appName: String
-        get() = MyApplication.appIntance.resources.getString(MyApplication.appIntance.applicationInfo.labelRes)
+        get() = MyApplication.intance.resources.getString(MyApplication.intance.applicationInfo.labelRes)
 
     /**
      * 获取当前应用程序的版本名。
      * @return 当前应用程序的版本名。
      */
     val appVersionName: String
-        get() = MyApplication.appIntance.packageManager.getPackageInfo(appPackage, 0).versionName
+        get() = MyApplication.intance.packageManager.getPackageInfo(appPackage, 0).versionName
 
     /**
      * 获取当前应用程序的版本号。
@@ -52,9 +52,9 @@ object GlobalUtil {
      */
     val appVersionCode: Long
         get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            MyApplication.appIntance.packageManager.getPackageInfo(appPackage, 0).longVersionCode
+            MyApplication.intance.packageManager.getPackageInfo(appPackage, 0).longVersionCode
         } else {
-            MyApplication.appIntance.packageManager.getPackageInfo(appPackage, 0).versionCode.toLong()
+            MyApplication.intance.packageManager.getPackageInfo(appPackage, 0).versionCode.toLong()
         }
 
     /**
@@ -97,7 +97,7 @@ object GlobalUtil {
             val appChannel = getApplicationMetaData("APP_CHANNEL")
             if ("google" != appChannel || "samsung" != appChannel) {
                 try {
-                    deviceId = Settings.Secure.getString(MyApplication.appIntance.contentResolver, Settings.Secure.ANDROID_ID)
+                    deviceId = Settings.Secure.getString(MyApplication.intance.contentResolver, Settings.Secure.ANDROID_ID)
                 } catch (e: Exception) {
                     logW(
                         TAG,
@@ -131,7 +131,7 @@ object GlobalUtil {
      * @return 字符串资源id对应的字符串内容。
      */
     fun getString(resId: Int): String {
-        return MyApplication.appIntance.resources.getString(resId)
+        return MyApplication.intance.resources.getString(resId)
     }
 
     /**
@@ -142,7 +142,7 @@ object GlobalUtil {
      * @return 字符串资源id对应的字符串内容。
      */
     fun getDimension(resId: Int): Int {
-        return MyApplication.appIntance.resources.getDimensionPixelOffset(resId)
+        return MyApplication.intance.resources.getDimensionPixelOffset(resId)
     }
 
     /**
@@ -155,7 +155,7 @@ object GlobalUtil {
      * @return 指定资源名的资源id。
      */
     fun getResourceId(name: String, type: String): Int {
-        return MyApplication.appIntance.resources.getIdentifier(name, type, appPackage)
+        return MyApplication.intance.resources.getIdentifier(name, type, appPackage)
     }
 
     /**
@@ -167,7 +167,7 @@ object GlobalUtil {
     fun getApplicationMetaData(key: String): String? {
         var applicationInfo: ApplicationInfo? = null
         try {
-            applicationInfo = MyApplication.appIntance.packageManager.getApplicationInfo(appPackage, PackageManager.GET_META_DATA)
+            applicationInfo = MyApplication.intance.packageManager.getApplicationInfo(appPackage, PackageManager.GET_META_DATA)
         } catch (e: PackageManager.NameNotFoundException) {
             logW(TAG, e.message, e)
         }
@@ -183,7 +183,7 @@ object GlobalUtil {
      */
     fun isInstalled(packageName: String): Boolean {
         val packageInfo: PackageInfo? = try {
-            MyApplication.appIntance.packageManager.getPackageInfo(packageName, 0)
+            MyApplication.intance.packageManager.getPackageInfo(packageName, 0)
         } catch (e: PackageManager.NameNotFoundException) {
             null
         }
@@ -194,7 +194,7 @@ object GlobalUtil {
      * 获取当前应用程序的图标。
      */
     fun getAppIcon(): Drawable {
-        val packageManager = MyApplication.appIntance.packageManager
+        val packageManager = MyApplication.intance.packageManager
         val applicationInfo = packageManager.getApplicationInfo(appPackage, 0)
         return packageManager.getApplicationIcon(applicationInfo)
     }
