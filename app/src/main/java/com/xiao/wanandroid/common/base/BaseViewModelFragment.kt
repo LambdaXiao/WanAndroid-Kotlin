@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.xiao.wanandroid.utils.extension.showToast
 
 /**
  * 需要用到viewModel才才继承这个BaseViewModelFragment

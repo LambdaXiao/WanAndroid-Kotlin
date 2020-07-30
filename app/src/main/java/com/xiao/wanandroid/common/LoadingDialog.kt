@@ -1,9 +1,9 @@
-package com.xiao.wanandroid.repository.remote
+package com.xiao.wanandroid.common
 
 import android.app.Dialog
 import android.content.Context
 import com.xiao.wanandroid.R
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.xiao.wanandroid.utils.ActivityManager
 
 /**
  *描述：网络请求加载框
@@ -12,12 +12,16 @@ import kotlinx.android.synthetic.main.activity_main.view.*
 object LoadingDialog {
     private var dialog:Dialog? = null
 
-    fun show(context:Context){
+    fun show(isShow: Boolean,cancelable: Boolean){
+        if(!isShow){
+            return
+        }
         cancel()
-        dialog = Dialog(context)
+        dialog = ActivityManager.currentActivity()?.let { Dialog(it) }
         dialog?.let {
             it.setContentView(R.layout.dialog_loading)
-            it.setCanceledOnTouchOutside(false)
+            it.setCanceledOnTouchOutside(cancelable)
+            it.setCancelable(cancelable)
             it.show()
         }
     }

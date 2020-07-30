@@ -4,9 +4,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import com.xiao.wanandroid.utils.extension.putExtras
-import java.lang.ref.WeakReference
+import com.xiao.wanandroid.ext.putExtras
 import java.util.*
 import kotlin.system.exitProcess
 

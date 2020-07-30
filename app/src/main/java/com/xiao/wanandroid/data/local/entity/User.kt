@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.repository.db.entity
+package com.xiao.wanandroid.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

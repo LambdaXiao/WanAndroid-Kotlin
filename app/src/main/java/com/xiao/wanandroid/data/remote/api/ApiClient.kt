@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.repository.remote.network
+package com.xiao.wanandroid.data.remote.api
 
 import com.xiao.wanandroid.BuildConfig
 import com.xiao.wanandroid.common.Constants

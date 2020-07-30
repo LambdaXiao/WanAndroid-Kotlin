@@ -1,6 +1,5 @@
-package com.xiao.wanandroid.repository.remote.network
+package com.xiao.wanandroid.data.remote.api
 
-import com.xiao.wanandroid.repository.remote.network.ResponseWrapper
 import com.xiao.wanandroid.ui.home.bean.BannerBean
 import com.xiao.wanandroid.ui.home.bean.FeedArticleList
 import retrofit2.http.GET

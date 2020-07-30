@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
 import com.xiao.wanandroid.common.Constants
-import com.xiao.wanandroid.repository.remote.LoadingDialog
-import com.xiao.wanandroid.repository.remote.network.ApiException
-import com.xiao.wanandroid.repository.remote.network.State
+import com.xiao.wanandroid.common.LoadingDialog
+import com.xiao.wanandroid.data.remote.api.ApiException
+import com.xiao.wanandroid.data.remote.api.State
 import com.xiao.wanandroid.utils.ActivityManager
-import com.xiao.wanandroid.utils.extension.logE
-import com.xiao.wanandroid.utils.extension.showToast
+import com.xiao.wanandroid.ext.logE
+import com.xiao.wanandroid.ext.showToast
 import kotlinx.coroutines.*
 import org.json.JSONException
 import retrofit2.HttpException
@@ -42,6 +42,8 @@ open class BaseViewModel : ViewModel() {
     //运行在UI线程的协程
     fun launchUI(
         block: Block,
+        isShow: Boolean = true,
+        cancelable: Boolean = true,
         //可选项，默认有实现体，实现通用错误提示
         errorBlock: ErrorBlock = { errorCode, errorMsg ->
             errorMsg?.showToast()
@@ -50,16 +52,19 @@ open class BaseViewModel : ViewModel() {
     ) = viewModelScope.launch(CoroutineExceptionHandler { coroutineContext, throwable ->
         // TODO 全局捕获异常，所有协程作用域的异常都统一在这里捕获
         logE("协程异常", throwable.toString(), throwable)
+        //取消加载框
         LoadingDialog.cancel()
+        //异常处理
         handleException(throwable, errorBlock)
     }) {
-
-        ActivityManager.currentActivity()?.let { LoadingDialog.show(it) }
+        //显示加载框
+        LoadingDialog.show(isShow,cancelable)
+        //协程代码块
         block()
+        //取消加载框
         LoadingDialog.cancel()
 
     }
-
 
 
     /**
@@ -90,7 +95,7 @@ open class BaseViewModel : ViewModel() {
     ) {
         when (throwable) {
             //网络请求成功了，但是后台响应码错误
-            is ApiException -> when(throwable.code){
+            is ApiException -> when (throwable.code) {
                 -1001 -> ""
                 else -> failureBlock(throwable.code, throwable.message)
             }

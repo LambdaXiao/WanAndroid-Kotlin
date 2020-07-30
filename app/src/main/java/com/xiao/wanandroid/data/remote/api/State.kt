@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.repository.remote.network
+package com.xiao.wanandroid.data.remote.api
 
 import androidx.annotation.StringRes
 

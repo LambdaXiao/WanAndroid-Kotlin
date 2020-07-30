@@ -3,8 +3,6 @@ package com.xiao.wanandroid.common.base
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.xiao.wanandroid.utils.ActivityManager
-import com.xiao.wanandroid.utils.extension.logD
-import java.lang.ref.WeakReference
 
 /**
  * 所有Activity的父类

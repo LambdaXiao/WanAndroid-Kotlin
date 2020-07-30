@@ -1,12 +1,12 @@
-package com.xiao.wanandroid.repository.db.database
+package com.xiao.wanandroid.data.local.database
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.xiao.wanandroid.application.MyApplication
 import com.xiao.wanandroid.common.Constants.DATABASE_NAME
-import com.xiao.wanandroid.repository.db.dao.UserssDao
-import com.xiao.wanandroid.repository.db.entity.User
+import com.xiao.wanandroid.data.local.dao.UserssDao
+import com.xiao.wanandroid.data.local.entity.User
 
 /**
  *描述：数据库实例(单例模式)

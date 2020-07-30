@@ -1,8 +1,6 @@
 package com.xiao.wanandroid.ui
 
-import android.content.Intent
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.xiao.wanandroid.R
 import com.xiao.wanandroid.common.ProgressDialogFragment
 import com.xiao.wanandroid.common.base.BaseActivity
@@ -13,7 +11,7 @@ import com.xiao.wanandroid.ui.knowledge.KnowledgeFragment
 import com.xiao.wanandroid.ui.mine.MineFragment
 import com.xiao.wanandroid.ui.project.ProjectFragment
 import com.xiao.wanandroid.utils.GlobalUtil
-import com.xiao.wanandroid.utils.extension.showToast
+import com.xiao.wanandroid.ext.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 
 

@@ -2,19 +2,23 @@ package com.xiao.wanandroid.ui.home
 
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import com.xiao.wanandroid.R
 import com.xiao.wanandroid.common.adapter.BaseRecyclerAdapter
 import com.xiao.wanandroid.common.adapter.setCustomAdapter
 import com.xiao.wanandroid.common.base.BaseViewModelFragment
+import com.xiao.wanandroid.data.repository.RequestRepository
+import com.xiao.wanandroid.ext.logD
 import com.xiao.wanandroid.ui.home.bean.FeedArticleBean
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.item_homearticle.view.*
+import kotlinx.coroutines.delay
 
 class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
 
     private var mList: MutableList<FeedArticleBean>? = null
     private var mAdapter: BaseRecyclerAdapter<FeedArticleBean>? = null
-
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -25,7 +29,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
     override fun initView(view: View) {
         mViewModel.getFeedArticleList().observe(viewLifecycleOwner, Observer {
             mList?.clear()
-            mList?.addAll(it.datas)
+            it?.datas?.let { it1 -> mList?.addAll(it1) }
             mAdapter?.notifyDataSetChanged()
         })
 
@@ -50,7 +54,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
     }
 
     override fun initData() {
-        mViewModel.getHomeArticle(mActivity,1)
+       mViewModel.getHomeArticle(mActivity,1)
     }
 
     override fun providerVMClass(): Class<HomeViewModel>  = HomeViewModel::class.java

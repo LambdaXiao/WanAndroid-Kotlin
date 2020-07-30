@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.repository.remote.network
+package com.xiao.wanandroid.data.remote.api
 
 /**
  *描述：所有网络请求返回的实体封装的Bean

@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.utils.extension
+package com.xiao.wanandroid.ext
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +13,22 @@ import com.xiao.wanandroid.application.MyApplication
  */
 fun Int.showToast(duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(MyApplication.intance, this, duration).show()
+}
+
+/**
+ * 根据手机的分辨率将dp转成为px。
+ */
+fun Int.dp2px(): Int {
+    val scale = MyApplication.intance.resources.displayMetrics.density
+    return (this * scale + 0.5f).toInt()
+}
+
+/**
+ * 根据手机的分辨率将px转成dp。
+ */
+fun Int.px2dp(): Int {
+    val scale = MyApplication.intance.resources.displayMetrics.density
+    return (this / scale + 0.5f).toInt()
 }
 
 /**

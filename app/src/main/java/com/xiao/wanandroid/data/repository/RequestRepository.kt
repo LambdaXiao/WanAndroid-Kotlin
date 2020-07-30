@@ -1,14 +1,12 @@
-package com.xiao.wanandroid.repository.requestRepository
+package com.xiao.wanandroid.data.repository
 
-import com.xiao.wanandroid.repository.remote.network.ApiClient
-import com.xiao.wanandroid.repository.remote.network.ResponseWrapper
+import com.xiao.wanandroid.data.remote.api.ApiClient
 import com.xiao.wanandroid.ui.home.bean.BannerBean
 import com.xiao.wanandroid.ui.home.bean.FeedArticleList
-import com.xiao.wanandroid.utils.extension.logD
 
 /**
- *描述：数据请求仓库层(单例)
- *
+ *描述：数据请求仓库层,统一请求数据的地方，面向本地数据或远程数据
+ * 单例
  */
 object RequestRepository {
 
@@ -21,4 +19,5 @@ object RequestRepository {
     suspend fun requestHomeArticle(pagenum: Int): FeedArticleList? {
         return ApiClient.getService().getHomeArticle(pagenum).dataConvert()
     }
+
 }

@@ -3,7 +3,6 @@ package com.xiao.wanandroid.common.base
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.xiao.wanandroid.utils.extension.showToast
 
 /**
  * 需要用到viewModel才继承这个BaseViewModelActivity

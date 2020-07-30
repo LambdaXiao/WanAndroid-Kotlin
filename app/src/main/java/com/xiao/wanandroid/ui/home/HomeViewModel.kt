@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.xiao.wanandroid.common.base.BaseViewModel
-import com.xiao.wanandroid.repository.requestRepository.RequestRepository
+import com.xiao.wanandroid.data.repository.RequestRepository
+import com.xiao.wanandroid.ext.showToast
 import com.xiao.wanandroid.ui.home.bean.FeedArticleList
-import com.xiao.wanandroid.utils.extension.showToast
 
 class HomeViewModel : BaseViewModel() {
 
@@ -20,14 +20,14 @@ class HomeViewModel : BaseViewModel() {
     fun getHomeArticle(context:Context,pagenum: Int) {
         launchUI(block = {
             //协程请求
-            val data = RequestRepository.requestHomeArticle(pagenum)
-            feedArticleList.value = data
+            feedArticleList.value = RequestRepository.requestHomeArticle(pagenum)
         },
             errorBlock = { errorCode, errorMsg ->
                 errorMsg?.showToast()
             }
         )
     }
+
 
 
 }

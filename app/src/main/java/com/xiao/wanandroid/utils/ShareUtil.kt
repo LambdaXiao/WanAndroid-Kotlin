@@ -3,7 +3,7 @@ package com.xiao.wanandroid.utils
 import android.app.Activity
 import android.content.Intent
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.utils.extension.showToast
+import com.xiao.wanandroid.ext.showToast
 
 /**
  *描述：调用系统原生分享工具类。

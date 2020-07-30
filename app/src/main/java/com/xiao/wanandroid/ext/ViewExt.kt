@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.utils.extension
+package com.xiao.wanandroid.ext
 
 import android.view.View
 import android.view.animation.AlphaAnimation

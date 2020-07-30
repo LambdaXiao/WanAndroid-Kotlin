@@ -1,10 +1,9 @@
-package com.xiao.wanandroid.repository.db.dao
+package com.xiao.wanandroid.data.local.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.xiao.wanandroid.repository.db.entity.User
+import com.xiao.wanandroid.data.local.entity.User
 
 /**
  *描述：
