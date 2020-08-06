@@ -1,6 +1,8 @@
 package com.xiao.wanandroid.ui
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.xiao.wanandroid.R
 import com.xiao.wanandroid.common.ProgressDialogFragment
 import com.xiao.wanandroid.common.base.BaseActivity
@@ -62,12 +64,9 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-//            startActivity(Intent(this,Test2Activity::class.java))
+            startActivity(Intent(this,Test2Activity::class.java))
 
-//        if (!this::progressDialogFragment.isInitialized) {
-//            progressDialogFragment = ProgressDialogFragment.newInstance()
-//        }
-//        progressDialogFragment.show(supportFragmentManager, R.string.loading, false)
+
     }
 
     /**

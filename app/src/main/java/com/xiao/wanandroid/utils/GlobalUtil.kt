@@ -11,6 +11,7 @@ import android.os.Build
 import android.provider.Settings
 import android.text.TextUtils
 import com.xiao.wanandroid.application.MyApplication
+import com.xiao.wanandroid.common.SharedPreferencesManager
 import com.xiao.wanandroid.ext.logW
 import java.util.*
 
@@ -110,7 +111,10 @@ object GlobalUtil {
                     return deviceSerial.toString()
                 }
             }
-            var uuid by SharedPreferencesUtil("uuid", "")
+            var uuid by SharedPreferencesManager(
+                "uuid",
+                ""
+            )
             if (!TextUtils.isEmpty(uuid)) {
                 deviceSerial = uuid
                 return deviceSerial.toString()

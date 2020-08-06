@@ -1,4 +1,4 @@
-package com.xiao.wanandroid.utils
+package com.xiao.wanandroid.common
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -23,7 +23,7 @@ import kotlin.reflect.KProperty
  * 存取
  * value = 2
  */
-class SharedPreferencesUtil<T>(val key: String, val default: T) {
+class SharedPreferencesManager<T>(val key: String, val default: T) {
 
     companion object {
         private const val SHARE_PRE_NAME = "open_wanandroid"

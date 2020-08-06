@@ -2,6 +2,7 @@ package com.xiao.wanandroid.ui.gzh
 
 import android.view.View
 import com.xiao.wanandroid.R
+import com.xiao.wanandroid.common.SharedPreferencesManager
 import com.xiao.wanandroid.common.base.BaseViewModelFragment
 
 class GzhFragment : BaseViewModelFragment<GzhViewModel>() {

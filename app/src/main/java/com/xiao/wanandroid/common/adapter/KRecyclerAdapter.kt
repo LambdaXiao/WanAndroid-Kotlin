@@ -3,7 +3,6 @@ package com.xiao.wanandroid.common.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -11,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
  *描述：封装RecycleView的适配器
  *
  */
-class BaseRecyclerAdapter<T>(
+class KRecyclerAdapter<T>(
     private val layoutResourceId: Int,
     private var itemList: MutableList<T>?,
     private val bindData: (View, T) -> Unit,
     private val itemClick: (View, Int) -> Unit,
     private val longClick: (View, Int) -> Unit
-) : RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder<T>>() {
+) : RecyclerView.Adapter<KRecyclerAdapter.ViewHolder<T>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<T> {
         val view = LayoutInflater.from(parent.context).inflate(layoutResourceId, parent, false)
@@ -76,9 +75,9 @@ fun <T> RecyclerView.setCustomAdapter(
     itemClick: (View, Int) -> Unit = { view, pos ->  },
     longClick: (View, Int) -> Unit = { view, pos ->  },
     layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.context)
-): BaseRecyclerAdapter<T> {
+): KRecyclerAdapter<T> {
     this.layoutManager = layoutManager
-    return BaseRecyclerAdapter(
+    return KRecyclerAdapter(
         layoutResourceId,
         itemList,
         bindData,
