@@ -1,13 +1,13 @@
 package com.xiao.wanandroid.ui.knowledge
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.common.base.BaseViewModelFragment
+import com.xiao.wanandroid.common.base.BaseFragment
 
-class KnowledgeFragment : BaseViewModelFragment<KnowledgeViewModel>() {
+class KnowledgeFragment : BaseFragment() {
+
+    val mViewModel: KnowledgeViewModel by viewModels()
 
     companion object {
         fun newInstance() = KnowledgeFragment()
@@ -23,6 +23,5 @@ class KnowledgeFragment : BaseViewModelFragment<KnowledgeViewModel>() {
 
     }
 
-    override fun providerVMClass(): Class<KnowledgeViewModel> = KnowledgeViewModel::class.java
 
 }

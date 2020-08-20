@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
 
 /**
  *描述：
  *
  */
-abstract class BaseDBViewModelFragment<DB : ViewDataBinding,VM : BaseViewModel>:BaseViewModelFragment<VM>() {
+abstract class BaseDataBindingFragment<DB : ViewDataBinding>:BaseFragment() {
 
     protected lateinit var mDataBinding: DB
 

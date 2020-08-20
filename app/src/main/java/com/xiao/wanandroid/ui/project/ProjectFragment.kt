@@ -1,18 +1,13 @@
 package com.xiao.wanandroid.ui.project
 
-import android.text.TextUtils
 import android.view.View
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.common.SharedPreferencesManager
-import com.xiao.wanandroid.common.base.BaseViewModelFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
+import com.xiao.wanandroid.common.base.BaseFragment
 
-class ProjectFragment : BaseViewModelFragment<ProjectViewModel>() {
+class ProjectFragment : BaseFragment() {
+
+    val mViewModel: ProjectViewModel by viewModels()
 
     companion object {
         fun newInstance() = ProjectFragment()
@@ -26,20 +21,7 @@ class ProjectFragment : BaseViewModelFragment<ProjectViewModel>() {
 
     override fun initData() {
 
-        var dd by SharedPreferencesManager("xxx","")
-        if(!TextUtils.isEmpty(dd)) {
-            println("Test=$dd")
-        }else{
-            println("Test=11==$dd")
-        }
-        dd= "www"
-//        dd = "www"
-//        println("Test=$dd")
-//        val aa= dd
-//        println("Test=$aa")
     }
 
-
-    override fun providerVMClass(): Class<ProjectViewModel> = ProjectViewModel::class.java
 
 }

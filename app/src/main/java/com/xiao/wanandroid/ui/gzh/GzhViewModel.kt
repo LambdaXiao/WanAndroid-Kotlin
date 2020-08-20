@@ -1,7 +1,7 @@
 package com.xiao.wanandroid.ui.gzh
 
-import com.xiao.wanandroid.common.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 
-class GzhViewModel : BaseViewModel() {
+class GzhViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

@@ -1,17 +1,16 @@
 package com.xiao.wanandroid.ui.mine
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
 import androidx.preference.PreferenceFragmentCompat
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.common.base.BaseDBViewModelActivity
-import com.xiao.wanandroid.common.base.BaseViewModelActivity
+import com.xiao.wanandroid.common.base.BaseDataBindingActivity
 import com.xiao.wanandroid.databinding.SettingsActivityBinding
 import com.xiao.wanandroid.ui.mine.viewmodel.SettingsViewModel
 
-class SettingsActivity : BaseDBViewModelActivity<SettingsActivityBinding, SettingsViewModel>() {
+class SettingsActivity : BaseDataBindingActivity<SettingsActivityBinding>() {
 
-    override fun providerVMClass(): Class<SettingsViewModel> = SettingsViewModel::class.java
+    val mViewModel:SettingsViewModel by viewModels()
 
     override fun getLayoutId(): Int = R.layout.settings_activity
 

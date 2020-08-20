@@ -1,19 +1,17 @@
 package com.xiao.wanandroid.ui
 
-import android.content.Intent
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.xiao.wanandroid.R
 import com.xiao.wanandroid.common.ProgressDialogFragment
 import com.xiao.wanandroid.common.base.BaseActivity
 import com.xiao.wanandroid.common.base.BaseFragment
+import com.xiao.wanandroid.ext.showToast
 import com.xiao.wanandroid.ui.gzh.GzhFragment
 import com.xiao.wanandroid.ui.home.HomeFragment
 import com.xiao.wanandroid.ui.knowledge.KnowledgeFragment
 import com.xiao.wanandroid.ui.mine.MineFragment
 import com.xiao.wanandroid.ui.project.ProjectFragment
 import com.xiao.wanandroid.utils.GlobalUtil
-import com.xiao.wanandroid.ext.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -22,7 +20,7 @@ class MainActivity : BaseActivity() {
     private var backPressTime = 0L
     private lateinit var mFragments: List<BaseFragment>
     private var mLastFgIndex = 0 //上一次显示的fragment下标
-    private val fragmentManager by lazy { supportFragmentManager}
+    private val fragmentManager by lazy { supportFragmentManager }
     private lateinit var progressDialogFragment: ProgressDialogFragment
 
     override fun getLayoutId(): Int = R.layout.activity_main
@@ -64,7 +62,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-            startActivity(Intent(this,Test2Activity::class.java))
 
 
     }

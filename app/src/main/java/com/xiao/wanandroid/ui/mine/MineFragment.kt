@@ -1,10 +1,14 @@
 package com.xiao.wanandroid.ui.mine
 
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.common.base.BaseViewModelFragment
+import com.xiao.wanandroid.common.base.BaseFragment
+import com.xiao.wanandroid.ui.mine.viewmodel.MineViewModel
 
-class MineFragment : BaseViewModelFragment<MineViewModel>() {
+class MineFragment : BaseFragment() {
+
+    val mViewModel: MineViewModel by viewModels()
 
     companion object {
         fun newInstance() = MineFragment()
@@ -20,6 +24,5 @@ class MineFragment : BaseViewModelFragment<MineViewModel>() {
 
     }
 
-    override fun providerVMClass(): Class<MineViewModel> = MineViewModel::class.java
 
 }

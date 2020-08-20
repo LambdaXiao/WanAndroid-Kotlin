@@ -1,7 +1,7 @@
 package com.xiao.wanandroid.ui.project
 
-import com.xiao.wanandroid.common.base.BaseViewModel
+import androidx.lifecycle.ViewModel
 
-class ProjectViewModel : BaseViewModel() {
+class ProjectViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

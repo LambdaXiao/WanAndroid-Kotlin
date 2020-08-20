@@ -1,20 +1,21 @@
 package com.xiao.wanandroid.ui.home
 
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.application.MyApplication
 import com.xiao.wanandroid.common.adapter.KRecyclerAdapter
 import com.xiao.wanandroid.common.adapter.setCustomAdapter
-import com.xiao.wanandroid.common.base.BaseViewModelFragment
+import com.xiao.wanandroid.common.base.BaseFragment
 import com.xiao.wanandroid.ui.home.bean.FeedArticleBean
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.item_homearticle.view.*
 
-class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
+class HomeFragment : BaseFragment() {
 
     private var mList: MutableList<FeedArticleBean>? = null
     private var mAdapter: KRecyclerAdapter<FeedArticleBean>? = null
+    private val mViewModel: HomeViewModel by viewModels()
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -42,21 +43,21 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel>() {
                     view.item_pager_niceDate.text = niceDate
                 }
             },
-            itemClick = {view, i ->
+            itemClick = { view, i ->
                 println("点击了第$i 项列表项")
             }
         )
 
-        MyApplication.mGlobalViewModel.getText().value = "ddd"
-        MyApplication.mGlobalViewModel.getText().observe(viewLifecycleOwner, Observer {
+        mGlobalViewModel.getText().value = "ddd"
+        mGlobalViewModel.getText().observe(viewLifecycleOwner, Observer {
             println("Test==home===$it")
         })
     }
 
     override fun initData() {
-       mViewModel.getHomeArticle(mActivity,1)
+        mViewModel.getHomeArticle(mActivity, 1)
+
     }
 
-    override fun providerVMClass(): Class<HomeViewModel>  = HomeViewModel::class.java
 
 }

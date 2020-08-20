@@ -18,7 +18,6 @@
             android:name=".ui.mine.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
         <activity android:name=".ui.Test2Activity" />
-        <activity android:name=".ui.TestActivity" />
         <activity android:name=".common.base.BaseActivity" />
         <activity
             android:name=".ui.MainActivity"

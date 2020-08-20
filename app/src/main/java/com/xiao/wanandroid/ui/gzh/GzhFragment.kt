@@ -1,11 +1,13 @@
 package com.xiao.wanandroid.ui.gzh
 
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.xiao.wanandroid.R
-import com.xiao.wanandroid.common.SharedPreferencesManager
-import com.xiao.wanandroid.common.base.BaseViewModelFragment
+import com.xiao.wanandroid.common.base.BaseFragment
 
-class GzhFragment : BaseViewModelFragment<GzhViewModel>() {
+class GzhFragment : BaseFragment() {
+
+    val mViewModel: GzhViewModel by viewModels()
 
     companion object {
         fun newInstance() = GzhFragment()
@@ -21,6 +23,5 @@ class GzhFragment : BaseViewModelFragment<GzhViewModel>() {
 
     }
 
-    override fun providerVMClass(): Class<GzhViewModel>  = GzhViewModel::class.java
 
 }

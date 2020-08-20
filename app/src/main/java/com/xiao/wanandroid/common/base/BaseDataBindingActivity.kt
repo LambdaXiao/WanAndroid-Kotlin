@@ -2,12 +2,13 @@ package com.xiao.wanandroid.common.base
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
 
 /**
  *描述：需要用到DataBingding和viewModel才继承这个BaseViewModelActivity
  *
  */
-abstract class BaseDBViewModelActivity<DB : ViewDataBinding,VM : BaseViewModel> : BaseViewModelActivity<VM>() {
+abstract class BaseDataBindingActivity<DB : ViewDataBinding> : BaseActivity() {
 
     protected lateinit var mDataBinding: DB
 
