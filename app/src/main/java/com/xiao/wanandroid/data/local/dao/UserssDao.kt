@@ -1,8 +1,7 @@
 package com.xiao.wanandroid.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.xiao.wanandroid.data.local.entity.User
 
 /**
@@ -12,18 +11,24 @@ import com.xiao.wanandroid.data.local.entity.User
 @Dao
 interface UserssDao {
     @Query("SELECT * FROM user")
-    fun getAll(): List<User>
+    fun getAll(): LiveData<List<User>>
 
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
+    suspend fun loadAllByIds(userIds: IntArray): List<User>
 
     @Query("SELECT * FROM user WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): User
+    suspend fun findByName(first: String, last: String): User
+
+    @Query("SELECT uid FROM user ORDER BY uid DESC LIMIT 0,1")
+    suspend fun findMaxID(): Int
 
     @Insert
-    fun insertAll(vararg users: User)
-//
-//    @Delete
-//    fun delete(user: User)
+    suspend fun insertAll(vararg users: User)
+
+    @Delete
+    suspend fun delete(user: User)
+
+    @Update
+    suspend fun update(user: User)
 
 }
