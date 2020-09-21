@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_setting"
-        android:icon="@drawable/setting"
-        android:title="@string/action_setting"
-        app:showAsAction="ifRoom" />
-
+        android:id="@+id/action_back"
+        android:icon="@drawable/ic_baseline_arrow_back_24"
+        android:title="@string/action_close"
+        app:showAsAction="always" />
 </menu>
