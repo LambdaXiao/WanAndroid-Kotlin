@@ -23,9 +23,9 @@ object LocalRepository {
         return AppDatabase.db.userDao().findMaxID()
     }
 
-    //查询数据
-    fun getAll(): LiveData<List<User>> {
-        return AppDatabase.db.userDao().getAll()
-    }
+//    //查询数据
+//    fun getAll(): LiveData<List<User>> {
+//        return AppDatabase.db.userDao().getAll()
+//    }
 
 }

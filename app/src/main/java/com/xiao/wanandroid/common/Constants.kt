@@ -15,6 +15,6 @@ object Constants {
     //请求的API域名
     const val BASE_URL : String = "https://www.wanandroid.com/"
 
-    const val DATABASE_NAME = "wanandroid_db"
+    const val DATABASE_NAME = "wanandroid.db"
 
 }

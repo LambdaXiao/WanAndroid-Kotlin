@@ -10,12 +10,13 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class User(
-    @PrimaryKey val uid: Int,
+    @PrimaryKey(autoGenerate = true) val uid: Int=0,
     @ColumnInfo(name = "first_name") val firstName: String?,
     @ColumnInfo(name = "last_name") val lastName: String?,
-    @ColumnInfo(name = "test") val test: String?
+    @ColumnInfo(name = "test") val test: String?,
+    @ColumnInfo(name = "test2") val test2: String?
 ){
     override fun toString(): String {
-        return "User(uid=$uid, firstName=$firstName, lastName=$lastName, test=$test)"
+        return "User(uid=$uid, firstName=$firstName, lastName=$lastName, test=$test,test2=$test2)"
     }
 }

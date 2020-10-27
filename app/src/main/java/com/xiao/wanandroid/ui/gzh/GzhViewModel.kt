@@ -19,16 +19,16 @@ class GzhViewModel : ViewModel() {
 
     fun insertData() {
         launchUI(block = {
-            var id = LocalRepository.findMaxID()
+            var id = 1
             logD("Test===", "最大ID:$id")
-            LocalRepository.insertAll(User(++id, "$id 姓", "$id 名","id"))
+            LocalRepository.insertAll(User( firstName="$id 姓", lastName = "$id 名",test = "id",test2 = "id2"))
         })
 
     }
 
     fun selectData(): LiveData<List<User>>? {
 
-            val list = LocalRepository.getAll()
+//            val list = LocalRepository.getAll()
             logD("Test===", "数据长度：${list.value?.size}")
             list.value?.forEach {
                 logD("Test===", it.toString())
